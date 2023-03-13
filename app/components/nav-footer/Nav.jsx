@@ -1,5 +1,9 @@
 import { /* Fragment, */ useEffect, useState } from "react";
-import { Disclosure /* Menu, Transition */ } from "@headlessui/react";
+import {
+  Disclosure,
+  /* Menu, Transition */ Dialog,
+  Transition,
+} from "@headlessui/react";
 import {
   Bars3Icon,
   /* BellIcon, */ XMarkIcon,
@@ -26,15 +30,6 @@ const Nav = () => {
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
-
       <div className="min-h-full">
         <Disclosure as="nav" className="bg-primary">
           {({ open }) => (
