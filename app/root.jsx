@@ -12,6 +12,7 @@ import tailwind from "../app/styles/tailwind.css";
 import Layout from "./components/layout";
 
 import Error from "./components/error";
+
 export const links = () => [{ rel: "stylesheet", href: tailwind }];
 
 export const meta = () => ({
@@ -47,9 +48,24 @@ export function CatchBoundary() {
 export function ErrorBoundary({ error }) {
   console.log({ error });
   return (
-    <>
-      <Error code={500} message={error.message} />
-    </>
+    <html lang="en">
+      <head>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <Layout>
+          <Error
+            code={500}
+            message={error.message}
+            message_details={error.stack}
+          />
+        </Layout>
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
+      </body>
+    </html>
   );
 }
 
