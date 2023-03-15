@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Disclosure, Dialog, Transition } from "@headlessui/react";
+import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "@remix-run/react";
 
@@ -27,19 +27,6 @@ const classNames = (...classes) => {
 const Transition2 = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="right" ref={ref} {...props} />;
 });
-
-const navigation = [
-  { name: "Inicio", href: "/", id: "1" },
-  { name: "Playas", href: "/contacto", id: "2" },
-  { name: "Pueblos Mágicos", href: "/pueblos-magicos", id: "3" },
-  { name: "Ecoturismo", href: "/ecoturismo", id: "4" },
-  { name: "USA", href: "/usa", id: "4" },
-  { name: "Mundo", href: "/mundo", id: "4" },
-  { name: "Servicios", href: "/servicios", id: "4" },
-  { name: "Estados", href: "/estados", id: "4" },
-  { name: "Videos", href: "/video", id: "4" },
-  { name: "En Vivo", href: "/en-vivo", id: "4" },
-];
 
 const social_medias = [
   {
@@ -69,7 +56,7 @@ const social_medias = [
   },
 ];
 
-const Nav = () => {
+const Nav = ({ navigation = [] }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const location = useLocation();

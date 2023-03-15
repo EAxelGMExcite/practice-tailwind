@@ -1,4 +1,7 @@
 import { Link, useLoaderData } from "@remix-run/react";
+import CardBig from "../components/notes/CarBig";
+import { Button } from "@mui/material";
+import EnVivoOtherSites from "../components/en-vivo/EnVivoOtherSites";
 
 export const loader = async ({ request, params }) => {
   const { category } = params;
@@ -49,7 +52,34 @@ const Category = () => {
           <div className="px-3">{dataLoader?.categoria?.name}</div>
         </div>
         <div className="flex flex-col md:flex-row w-auto gap-4">
-          <div className="basis-3/4 bg-primary">NOTAS</div>
+          <div className="basis-3/4 ">
+            <hr className="my-5" />
+
+            <div className="uppercase text-2xl font-bold">
+              {dataLoader?.categoria?.name}
+            </div>
+            <div>
+              {dataLoader.notas.map((nota, index) => (
+                <div key={index} className="divide-x">
+                  <CardBig nota={nota} />
+                </div>
+              ))}
+              <div className="flex justify-center mt-10">
+                <div>
+                  <Button>Cargar Más</Button>
+                </div>
+              </div>
+            </div>
+
+            <div className="wx-auto flex justify-center py-[20px] bg-gray-400">
+              <div>ANUNCIO</div>
+            </div>
+
+            <div className="mt-10">
+              <EnVivoOtherSites />
+            </div>
+          </div>
+
           <div className="basis-1/4">
             <div className="flex justify-center">
               <div className="w-[250px] flex justify-center  py-[100px] bg-gray-400 ">

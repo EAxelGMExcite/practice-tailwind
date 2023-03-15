@@ -8,12 +8,16 @@ import {
   useCatch,
 } from "@remix-run/react";
 
-import tailwind from "../app/styles/tailwind.css";
+import tailwindcss from "../app/styles/tailwind.css";
+import globalscss from "../app/styles/globals.css";
 import Layout from "./components/layout";
 
 import Error from "./components/error";
 
-export const links = () => [{ rel: "stylesheet", href: tailwind }];
+export const links = () => [
+  { rel: "stylesheet", href: tailwindcss },
+  { rel: "stylesheet", href: globalscss },
+];
 
 export const meta = () => ({
   charset: "utf-8",

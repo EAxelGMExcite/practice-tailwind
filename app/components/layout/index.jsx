@@ -1,4 +1,5 @@
 import Nav from "../nav-footer/Nav";
+import Footer from "../nav-footer/Footer";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import tailwindConfig from "../../../tailwind.config";
 //import "../../globals.css";
@@ -21,11 +22,24 @@ const theme = createTheme({
   }, */
 });
 
+const navigation = [
+  { name: "Inicio", href: "/", id: "1" },
+  { name: "Playas", href: "/playas", id: "2" },
+  { name: "Pueblos Mágicos", href: "/pueblos-magicos", id: "3" },
+  { name: "Ecoturismo", href: "/ecoturismo", id: "4" },
+  { name: "USA", href: "/usa", id: "4" },
+  { name: "Mundo", href: "/mundo", id: "4" },
+  { name: "Servicios", href: "/servicios", id: "4" },
+  { name: "Estados", href: "/estados", id: "4" },
+  { name: "Videos", href: "/video", id: "4" },
+  { name: "En Vivo", href: "/en-vivo", id: "4" },
+];
+
 const Index = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <header>
-        <Nav />
+        <Nav navigation={navigation} />
       </header>
 
       <main>
@@ -33,6 +47,10 @@ const Index = ({ children }) => {
           {children}
         </div>
       </main>
+
+      <footer>
+        <Footer navigation={navigation} />
+      </footer>
     </ThemeProvider>
   );
 };
