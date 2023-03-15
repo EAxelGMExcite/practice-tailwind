@@ -1,11 +1,12 @@
-import { Link, useLoaderData } from "@remix-run/react";
-import { Visibility as VisibilityIcon } from "@mui/icons-material";
+import { Link, useLoaderData, useLocation } from "@remix-run/react";
+import { Visibility as VisibilityIcon, Facebook as FacebookIcon, Twitter as TwitterIcon, Pinterest as PinterestIcon, WhatsApp as WhatsAppIncon } from "@mui/icons-material";
 import AnunucioHorizontal from "~/components/anuncios/anuncio-horizontal";
 import { getFullDateFromString } from "~/components/helpers";
 import BloqueDerecha from "~/components/helpers/BloqueDerecha";
 import AnunucioCuadrado from "~/components/anuncios/anuncio-cuadrado";
 import TextUnlined from "~/components/helpers/TextUnlined";
 import ArticulosRelacionadosCard from "~/components/notes/articulosRelacionadosCard";
+import { useEffect, useState } from "react";
 
 export const loader = async ({ request, params }) => {
   const { category, dia } = params;
@@ -59,7 +60,23 @@ export const loader = async ({ request, params }) => {
 };
 
 const Note = () => {
+  const location = useLocation();
   const dataLoader = useLoaderData();
+  const [shareSocialMedia, setShareSocialMedia] = useState([]);
+
+  useEffect(() => {
+    const domain = window.location;
+    console.log({ domain });
+    const shares = [
+      { name: "Facebook", icon: <FacebookIcon />, color: "#516eab", url: `https://www.facebook.com/sharer.php?u=${domain.href}` },
+      { name: "Twitter", icon: <TwitterIcon />, color: "#29c5f6", url: `https://twitter.com/intent/tweet?text=${dataLoader?.nota?.title}&url=${domain.href}` },
+      { name: "Pinterest", icon: <PinterestIcon />, color: "#ca212a", url: `https://pinterest.com/pin/create/button/?url=${domain.href}&media=${dataLoader?.nota?.image_destacada}` },
+      { name: "WhatsApp", icon: <WhatsAppIncon />, color: "#7bbf6a", url: `https://api.whatsapp.com/send?text=${dataLoader?.nota?.title}%20%20${domain.href}` },
+    ];
+    setShareSocialMedia(shares);
+
+    // eslint-disable-next-line
+  }, location);
 
   return (
     <div>
@@ -124,7 +141,22 @@ const Note = () => {
             </div>
 
             <hr className="my-10" />
-            <div>REDES SOCIALES</div>
+            <div>
+              <div>
+                <TextUnlined text="Compartir" />
+              </div>
+              <div className="flex gap-2 mt-5">
+                {shareSocialMedia.map((share, index) => (
+                  <div key={index}>
+                    <a href={share.url} target="_blank" rel="noopener nofollow noreferrer">
+                      <div className="w-12 h-12 flex justify-center items-center text-white rounded" style={{ backgroundColor: share.color }}>
+                        <div>{share.icon}</div>
+                      </div>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
             <hr className="my-10" />
 
             <div>

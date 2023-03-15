@@ -12,7 +12,6 @@ const ArticulosRelacionadosCard = ({ nota }) => {
         <Link to="/categoria/20000402/nota-con-su-respectivo-slug" className="font-medium hover:text-primary">
           {nota.title}
         </Link>
-        <div>{nota.date}</div>
       </div>
     </div>
   );
