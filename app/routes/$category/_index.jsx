@@ -1,10 +1,12 @@
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, useCatch, useLoaderData } from "@remix-run/react";
 import CardBig from "~/components/notes/CarBig";
 
 import { Button } from "@mui/material";
 import EnVivoOtherSites from "~/components/en-vivo/EnVivoOtherSites";
 import AnunucioHorizontal from "~/components/anuncios/anuncio-horizontal";
 import BloqueDerecha from "~/components/helpers/BloqueDerecha";
+import Error from "~/components/error";
+
 export const loader = async ({ request, params }) => {
   const { category } = params;
 
@@ -34,6 +36,24 @@ export const loader = async ({ request, params }) => {
   //console.log({ request, params });
 
   return { categoria, notas };
+};
+
+export const CatchBoundary = () => {
+  const caught = useCatch();
+  return (
+    <div>
+      <Error code={caught.status} message={"No encontramos la página que estas buscando 😭"} message_details={caught.data} />
+    </div>
+  );
+};
+
+export const ErrorBoundary = ({ error }) => {
+  console.log({ error });
+  return (
+    <div>
+      <Error code={500} message={error.message} message_details={error.stack} />
+    </div>
+  );
 };
 
 const Category = () => {

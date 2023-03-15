@@ -1,4 +1,4 @@
-import { Link, useLoaderData, useLocation } from "@remix-run/react";
+import { Link, useCatch, useLoaderData, useLocation } from "@remix-run/react";
 import { Visibility as VisibilityIcon, Facebook as FacebookIcon, Twitter as TwitterIcon, Pinterest as PinterestIcon, WhatsApp as WhatsAppIncon } from "@mui/icons-material";
 import AnunucioHorizontal from "~/components/anuncios/anuncio-horizontal";
 import { getFullDateFromString } from "~/components/helpers";
@@ -7,6 +7,7 @@ import AnunucioCuadrado from "~/components/anuncios/anuncio-cuadrado";
 import TextUnlined from "~/components/helpers/TextUnlined";
 import ArticulosRelacionadosCard from "~/components/notes/articulosRelacionadosCard";
 import { useEffect, useState } from "react";
+import Error from "~/components/error";
 
 export const loader = async ({ request, params }) => {
   const { category, dia } = params;
@@ -59,6 +60,24 @@ export const loader = async ({ request, params }) => {
   return { categoria, notas, nota, anuncios };
 };
 
+export const CatchBoundary = () => {
+  const caught = useCatch();
+  return (
+    <div>
+      <Error code={caught.status} message={"No encontramos la página que estas buscando 😭"} message_details={caught.data} />
+    </div>
+  );
+};
+
+export const ErrorBoundary = ({ error }) => {
+  console.log({ error });
+  return (
+    <div>
+      <Error code={500} message={error.message} message_details={error.stack} />
+    </div>
+  );
+};
+
 const Note = () => {
   const location = useLocation();
   const dataLoader = useLoaderData();
@@ -66,7 +85,6 @@ const Note = () => {
 
   useEffect(() => {
     const domain = window.location;
-    console.log({ domain });
     const shares = [
       { name: "Facebook", icon: <FacebookIcon />, color: "#516eab", url: `https://www.facebook.com/sharer.php?u=${domain.href}` },
       { name: "Twitter", icon: <TwitterIcon />, color: "#29c5f6", url: `https://twitter.com/intent/tweet?text=${dataLoader?.nota?.title}&url=${domain.href}` },
@@ -149,7 +167,8 @@ const Note = () => {
                 {shareSocialMedia.map((share, index) => (
                   <div key={index}>
                     <a href={share.url} target="_blank" rel="noopener nofollow noreferrer">
-                      <div className="w-12 h-12 flex justify-center items-center text-white rounded" style={{ backgroundColor: share.color }}>
+                      {/* PARA USAR CLASES TAILWIND, POR EJEMPLO COLORES O OTROS ESTILOS AGREGARÑOS EN EL tailwind.config.js en safelist */}
+                      <div className={`w-12 h-12 flex justify-center items-center text-white rounded bg-[${share.color}] hover:bg-stone-800`} /* style={{ backgroundColor: share.color }} */>
                         <div>{share.icon}</div>
                       </div>
                     </a>
