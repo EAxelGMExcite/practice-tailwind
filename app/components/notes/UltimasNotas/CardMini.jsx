@@ -12,7 +12,7 @@ const CardMini = ({ nota }) => {
           </div>
           <div className="pb-2 px-1">
             <div className="text-[14px] font-medium hover:text-primary">
-              <Link to="/">{nota.title}</Link>
+              <Link to="/category/20000204/slug-nota">{nota.title}</Link>
             </div>
             <div className="text-[12px] flex gap-5 mt-2">
               <div>

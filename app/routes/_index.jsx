@@ -7,6 +7,7 @@ import NormalCard from "~/components/notes/NormalCard";
 import UltimaNota from "~/components/notes/UltimasNotas";
 import CardMini from "~/components/notes/UltimasNotas/CardMini";
 import { Button } from "@mui/material";
+import Carrousel from "~/components/carrousel";
 
 export const ErrorBoundary = ({ error }) => {
   console.log({ error });
@@ -125,7 +126,9 @@ const Inicio = () => {
         <AnunucioHorizontal />
       </div>
 
-      <div className="mt-10">IMAGENES</div>
+      <div className="mt-10">
+        <Carrousel />
+      </div>
 
       <div className="mt-10">
         <EnVivoGlobal />

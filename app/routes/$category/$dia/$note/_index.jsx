@@ -91,10 +91,10 @@ const Note = () => {
       { name: "Pinterest", icon: <PinterestIcon />, color: "#ca212a", url: `https://pinterest.com/pin/create/button/?url=${domain.href}&media=${dataLoader?.nota?.image_destacada}` },
       { name: "WhatsApp", icon: <WhatsAppIncon />, color: "#7bbf6a", url: `https://api.whatsapp.com/send?text=${dataLoader?.nota?.title}%20%20${domain.href}` },
     ];
-    setShareSocialMedia(shares);
+    setShareSocialMedia([...shares]);
 
     // eslint-disable-next-line
-  }, location);
+  }, [location]);
 
   return (
     <div>
