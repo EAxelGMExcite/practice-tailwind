@@ -21,7 +21,9 @@ const EnVivo = () => {
         <EnVivoGlobal />
       </div>
 
-      <div className="mt-5">TABLA FATIMA EN VIVO HORARIO</div>
+      <div className="mt-5">
+        <my-table name="vibetv"></my-table>
+      </div>
     </div>
   );
 };

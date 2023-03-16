@@ -11,7 +11,7 @@ export const links = () => [
 
 export const meta = () => ({
   charset: "utf-8",
-  title: "New Remix App",
+  title: "México Travel Channel",
   viewport: "width=device-width,initial-scale=1",
 });
 
@@ -29,6 +29,7 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+        <script type="module" crossOrigin="true" src="/assets/index-7288338e.js"></script>
       </body>
     </html>
   );
