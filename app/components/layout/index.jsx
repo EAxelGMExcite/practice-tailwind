@@ -23,7 +23,7 @@ const theme = createTheme({
 });
 
 const navigation = [
-  { name: "Inicio", href: "/", id: "1" },
+  /* { name: "Inicio", href: "/", id: "1" }, */
   { name: "Playas", href: "/playas", id: "2" },
   { name: "Pueblos Mágicos", href: "/pueblos-magicos", id: "3" },
   { name: "Ecoturismo", href: "/ecoturismo", id: "4" },
@@ -32,7 +32,7 @@ const navigation = [
   { name: "Servicios", href: "/servicios", id: "4" },
   { name: "Estados", href: "/estados", id: "4" },
   { name: "Videos", href: "/video", id: "4" },
-  { name: "En Vivo", href: "/en-vivo", id: "4" },
+  /* { name: "En Vivo", href: "/en-vivo", id: "4" }, */
 ];
 
 const Index = ({ children }) => {
@@ -43,9 +43,7 @@ const Index = ({ children }) => {
       </header>
 
       <main>
-        <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 p-3">
-          {children}
-        </div>
+        <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8 p-3">{children}</div>
       </main>
 
       <footer>

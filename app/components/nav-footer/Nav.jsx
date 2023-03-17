@@ -86,16 +86,22 @@ const Nav = ({ navigation = [] }) => {
                         ))}
                       </div>
                       <div className="flex items-baseline space-x-4 pt-5">
+                        <Link to={"/"} className={classNames("/" === location.pathname ? "bg-red-900 text-white" : "text-gray-300 hover:bg-red-400 hover:text-white", "rounded-md px-3 py-2 text-sm font-medium")}>
+                          Inicio
+                        </Link>
                         {navigation.map((item, index) => (
                           <Link key={index} to={item.href} className={classNames(item.href === location.pathname ? "bg-red-900 text-white" : "text-gray-300 hover:bg-red-400 hover:text-white", "rounded-md px-3 py-2 text-sm font-medium")}>
                             {item.name}
                           </Link>
                         ))}
+                        <Link to="/en-vivo" className={classNames("/en-vivo" === location.pathname ? "bg-red-900 text-white" : "text-gray-300 hover:bg-red-400 hover:text-white", "rounded-md px-3 py-2 text-sm font-medium")}>
+                          En vivo
+                        </Link>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="-mr-2 flex lg:hidden">
+                <div className="mr-2 flex lg:hidden">
                   {/* Mobile menu button */}
                   <button className="inline-flex items-center justify-center rounded-md bg-primary p-2 text-gray-400 hover:bg-red-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary" onClick={() => setOpenModal(!openModal)}>
                     <span className="sr-only">Open main menu</span>
@@ -126,33 +132,15 @@ const Nav = ({ navigation = [] }) => {
               </AppBar>
               <div className="bg-primary text-white p-10 font-bold text-[30px]" style={{ height: "100%" }}>
                 {navigation.map((item, index) => (
-                  <Link key={index} to={item.href} className={classNames(item.href === location.pathname ? "bg-red-900 text-white" : "text-gray-300 hover:bg-red-400 hover:text-white", "block rounded-md px-3 py-2 text-base font-medium")} aria-current={item.current ? "page" : undefined}>
+                  <Link key={index} to={item.href} className={classNames(item.href === location.pathname ? "bg-red-900 text-white" : "text-gray-300 hover:bg-red-400 hover:text-white", "block rounded-md px-3 py-2 text-base font-medium")}>
                     {item.name}
                   </Link>
                 ))}
+                <Link to="/en-vivo" className={classNames("/en-vivo" === location.pathname ? "bg-red-900 text-white" : "text-gray-300 hover:bg-red-400 hover:text-white", "block rounded-md px-3 py-2 text-base font-medium")}>
+                  En vivo
+                </Link>
               </div>
             </DialogMaterial>
-
-            {/* {openModal && (
-              <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3 md:hidden">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    as="a"
-                    to={item.href}
-                    className={classNames(
-                      item.href === location.pathname
-                        ? "bg-red-900 text-white"
-                        : "text-gray-300 hover:bg-red-400 hover:text-white",
-                      "block rounded-md px-3 py-2 text-base font-medium"
-                    )}
-                    aria-current={item.current ? "page" : undefined}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            )} */}
           </>
         </Disclosure>
       </div>

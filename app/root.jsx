@@ -3,6 +3,7 @@ import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@re
 import tailwindcss from "../app/styles/tailwind.css";
 import globalscss from "../app/styles/globals.css";
 import Layout from "./components/layout";
+import Error from "./components/error";
 
 export const links = () => [
   { rel: "stylesheet", href: tailwindcss },
@@ -14,6 +15,15 @@ export const meta = () => ({
   title: "México Travel Channel",
   viewport: "width=device-width,initial-scale=1",
 });
+
+export const ErrorBoundary = ({ error }) => {
+  console.log({ error });
+  return (
+    <div>
+      <Error code={500} message={error.message} message_details={error.stack} />
+    </div>
+  );
+};
 
 export default function App() {
   return (
