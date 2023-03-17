@@ -5,7 +5,7 @@ import { getFullDateFromString } from "~/components/helpers";
 import BloqueDerecha from "~/components/helpers/BloqueDerecha";
 import AnunucioCuadrado from "~/components/anuncios/anuncio-cuadrado";
 import TextUnlined from "~/components/helpers/TextUnlined";
-import ArticulosRelacionadosCard from "~/components/notes/articulosRelacionadosCard";
+import ArticulosRelacionadosCard from "~/components/notes/ArticulosRelacionadosCard";
 import { useEffect, useState } from "react";
 import Error from "~/components/error";
 
