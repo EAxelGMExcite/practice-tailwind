@@ -19,9 +19,20 @@ export const meta = () => ({
 export const ErrorBoundary = ({ error }) => {
   console.log({ error });
   return (
-    <div>
-      <Error code={500} message={error.message} message_details={error.stack} />
-    </div>
+    <html lang="en">
+      <head>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        <Layout>
+          <Error code={500} message={error.message} message_details={error.stack} />
+        </Layout>
+        <ScrollRestoration />
+        <Scripts />
+        <LiveReload />
+      </body>
+    </html>
   );
 };
 

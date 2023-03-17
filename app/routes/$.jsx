@@ -18,18 +18,10 @@ export const meta = ({ data, params, location, parentsData }) => {
 
 export const CatchBoundary = () => {
   const caught = useCatch();
+  console.log({ caught });
   return (
     <div>
       <Error code={caught.status} message={"No encontramos la página que estas buscando 😭"} message_details={caught.data} />
-    </div>
-  );
-};
-
-export const ErrorBoundary = ({ error }) => {
-  console.log({ error });
-  return (
-    <div>
-      <Error code={500} message={error.message} message_details={error.stack} />
     </div>
   );
 };

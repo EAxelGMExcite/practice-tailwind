@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "@remix-run/react";
 
 import { Button, Dialog as DialogMaterial, AppBar, Toolbar, Typography, Slide } from "@mui/material";
-import { Close as CloseIcon, Facebook as FacebookIcon, Instagram as InstagramIcon, YouTube as YouTubeIcon, Twitter as TwitterIcon, Email as EmailIcon } from "@mui/icons-material";
+import { Close as CloseIcon, Facebook as FacebookIcon, Instagram as InstagramIcon, YouTube as YouTubeIcon, Twitter as TwitterIcon, Email as EmailIcon, Search as SearchIcon } from "@mui/icons-material";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
@@ -64,10 +64,60 @@ const Nav = ({ navigation = [] }) => {
   return (
     <>
       <div className="min-h-full">
-        <Disclosure as="nav" className="bg-primary lg:py-[30px] ">
+        <Disclosure as="nav" className="bg-primary lg:py-[30px] py-3 ">
           <>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="flex h-16 items-center justify-between">
+              <div className="flex justify-between">
+                <div className="mr-2 flex lg:hidden">
+                  {/* Mobile menu button */}
+                  <button className="inline-flex items-center justify-center rounded-md bg-primary p-2 hover:bg-red-400 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary" onClick={() => setOpenModal(!openModal)}>
+                    <span className="sr-only">Open main menu</span>
+                    {openModal ? <XMarkIcon className="block h-6 w-6" aria-hidden="true" /> : <Bars3Icon className="block h-6 w-6" aria-hidden="true" />}
+                  </button>
+                </div>
+                <div>
+                  <div className="flex-shrink-0">
+                    <Link to="/">
+                      <img className="lg:w-36 w-14" src="/icon.svg" alt="Mexico Travel Channel" />
+                    </Link>
+                  </div>
+                </div>
+                <div className="hidden lg:block">
+                  <div className="w-full divide-y divide-solid space-y-4">
+                    <div className="flex flex-row-reverse gap-3">
+                      {social_medias.map((social, index) => (
+                        <div key={index} className="text-white">
+                          <a href={social.href} target="_blank" rel="noopener nofollow noreferrer">
+                            {social.icon}
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex items-center space-x-4 pt-5">
+                      {navigation.map((item, index) => (
+                        <Link key={index} to={item.href} className={classNames(item.href === location.pathname ? "bg-red-900 text-white" : "text-gray-300 hover:bg-red-400 hover:text-white", "rounded-md px-3 py-2 text-sm font-medium")}>
+                          {item.name}
+                        </Link>
+                      ))}
+                      <Link to="/en-vivo" className={classNames("/en-vivo" === location.pathname ? "bg-red-900 text-white" : "text-gray-300 hover:bg-red-400 hover:text-white", "rounded-md px-3 py-2 text-sm font-medium")}>
+                        En vivo
+                      </Link>
+                      <Link to="/buscar" className="inline-flex items-center justify-center rounded-md bg-primary p-2 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary">
+                        <SearchIcon className="block h-6 w-6 text-white" aria-hidden="true" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+                <div className="mr-2 flex lg:hidden">
+                  {/* Mobile menu button */}
+                  <Link className="inline-flex items-center justify-center rounded-md bg-primary p-2 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary" to="/buscar">
+                    <SearchIcon className="block h-6 w-6 text-white" aria-hidden="true" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+            {/* <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div className="flex flex-row h-16 items-center justify-between">
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <Link to="/">
@@ -86,9 +136,6 @@ const Nav = ({ navigation = [] }) => {
                         ))}
                       </div>
                       <div className="flex items-baseline space-x-4 pt-5">
-                        <Link to={"/"} className={classNames("/" === location.pathname ? "bg-red-900 text-white" : "text-gray-300 hover:bg-red-400 hover:text-white", "rounded-md px-3 py-2 text-sm font-medium")}>
-                          Inicio
-                        </Link>
                         {navigation.map((item, index) => (
                           <Link key={index} to={item.href} className={classNames(item.href === location.pathname ? "bg-red-900 text-white" : "text-gray-300 hover:bg-red-400 hover:text-white", "rounded-md px-3 py-2 text-sm font-medium")}>
                             {item.name}
@@ -102,14 +149,14 @@ const Nav = ({ navigation = [] }) => {
                   </div>
                 </div>
                 <div className="mr-2 flex lg:hidden">
-                  {/* Mobile menu button */}
+                   Mobile menu button 
                   <button className="inline-flex items-center justify-center rounded-md bg-primary p-2 text-gray-400 hover:bg-red-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary" onClick={() => setOpenModal(!openModal)}>
                     <span className="sr-only">Open main menu</span>
                     {openModal ? <XMarkIcon className="block h-6 w-6" aria-hidden="true" /> : <Bars3Icon className="block h-6 w-6" aria-hidden="true" />}
                   </button>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <DialogMaterial fullScreen open={openModal} onClick={() => setOpenModal(!openModal)} TransitionComponent={Transition2} className="lg:hidden">
               <AppBar sx={{ position: "relative" }}>
