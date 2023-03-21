@@ -4,7 +4,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link, useLocation } from "@remix-run/react";
 
 import { Button, Dialog as DialogMaterial, AppBar, Toolbar, Typography, Slide } from "@mui/material";
-import { Close as CloseIcon, Facebook as FacebookIcon, Instagram as InstagramIcon, YouTube as YouTubeIcon, Twitter as TwitterIcon, Email as EmailIcon, Search as SearchIcon } from "@mui/icons-material";
+import { Close as CloseIcon, Facebook as FacebookIcon, Instagram as InstagramIcon, YouTube as YouTubeIcon, Twitter as TwitterIcon, Email as EmailIcon, Search as SearchIcon, ArrowDropDown as ArrowDropDownIcon } from "@mui/icons-material";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
@@ -52,6 +52,8 @@ export const social_medias = [
   },
 ];
 
+const notices = [...Array(5).keys()];
+
 const Nav = ({ navigation = [] }) => {
   const [openModal, setOpenModal] = useState(false);
 
@@ -67,7 +69,7 @@ const Nav = ({ navigation = [] }) => {
         <Disclosure as="nav" className="bg-primary lg:py-[30px] py-3 ">
           <>
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-              <div className="flex justify-between">
+              <div className="flex justify-between gap-2">
                 <div className="mr-2 flex lg:hidden">
                   {/* Mobile menu button */}
                   <button className="inline-flex items-center justify-center rounded-md bg-primary p-2 hover:bg-red-400 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary" onClick={() => setOpenModal(!openModal)}>
@@ -93,13 +95,28 @@ const Nav = ({ navigation = [] }) => {
                         </div>
                       ))}
                     </div>
-                    <div className="flex items-center space-x-4 pt-5">
+                    <div className="flex flex-row flex-wrap gap-3 pt-5 justify-end items-center">
                       {navigation.map((item, index) => (
-                        <Link key={index} to={item.href} className={classNames(item.href === location.pathname ? "bg-red-900 text-white" : "text-gray-300 hover:bg-red-400 hover:text-white", "rounded-md px-3 py-2 text-sm font-medium")}>
-                          {item.name}
-                        </Link>
+                        <div key={index} className="w-auto">
+                          <Link to={item.href} className={classNames(item.href === location.pathname ? "bg-red-900 text-white" : " hover:bg-red-400 ", "rounded-md px-3 py-2 text-white text-sm uppercase font-bold")} id={`dropdownHoverButton_${index}`} data-dropdown-toggle={`dropdownHover_${index}`} data-dropdown-trigger="hover">
+                            {item.name} <ArrowDropDownIcon className="w-8 h-8" />
+                          </Link>
+
+                          <div id={`dropdownHover_${index}`} className="z-10 hidden bg-white divide-y divide-gray-100  shadow drop-shadow-2xl w-auto p-5">
+                            <div className="flex flex-row gap-5">
+                              {notices.map((notice, index) => (
+                                <Link key={index} to="/category/20000204/note-slug" className="hover:text-primary">
+                                  <div>
+                                    <img className="w-60 h-40" src="https://mexicotravelchannel.com.mx/wp-content/uploads/2023/03/imagen-destacada-wordpress-21-1-534x462.png" alt="test" />
+                                  </div>
+                                  <div>Aquí va el titulo de la noticia.</div>
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
                       ))}
-                      <Link to="/en-vivo" className={classNames("/en-vivo" === location.pathname ? "bg-red-900 text-white" : "text-gray-300 hover:bg-red-400 hover:text-white", "rounded-md px-3 py-2 text-sm font-medium")}>
+                      <Link to="/en-vivo" className={classNames("/en-vivo" === location.pathname ? "bg-red-900 text-white" : " hover:bg-red-400 ", "rounded-md px-3 py-2 text-white font-bold text-sm uppercase")}>
                         En vivo
                       </Link>
                       <Link to="/buscar" className="inline-flex items-center justify-center rounded-md bg-primary p-2 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary">

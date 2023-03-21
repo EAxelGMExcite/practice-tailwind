@@ -8,6 +8,7 @@ import Error from "./components/error";
 export const links = () => [
   { rel: "stylesheet", href: tailwindcss },
   { rel: "stylesheet", href: globalscss },
+  /* { rel: "stylesheet", href: "https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" }, */
 ];
 
 export const meta = () => ({
@@ -51,6 +52,7 @@ export default function App() {
         <Scripts />
         <LiveReload />
         <script type="module" crossOrigin="true" src="/assets/index-7288338e.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
       </body>
     </html>
   );
