@@ -9,26 +9,15 @@ import ArticulosRelacionadosCard from "~/components/notes/ArticulosRelacionadosC
 import { useEffect, useState } from "react";
 import Error from "~/components/error";
 import { getPosts } from "~/services";
-//import { fetch } from "@remix-run/web-fetch";
-import { fetch } from "@remix-run/node";
 
 export const loader = async ({ request, params }) => {
   const { category, dia } = params;
 
-  /* const { data } = await axios.get(`${"https://mtch.vibetv.mx/wp-json/wp/v2/posts"}`);
-  console.log({ data }); */
-  
+  const cookie = request.headers.get("Cookie");
+  console.log(cookie);
+
   const data = await getPosts({});
   console.log({ data });
-
-  /* let response = await fetch("http://localhost:8000/api/v1/reports?from=2021-01-01&to=2021-02-01", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  console.log(response);
-  response = await response.json();
-  console.log(response); */
 
   let day_complete_pretty = getFullDateFromString({ string_date: dia });
 
