@@ -1,5 +1,4 @@
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
-
 import tailwindcss from "../app/styles/tailwind.css";
 import globalscss from "../app/styles/globals.css";
 import Layout from "./components/layout";

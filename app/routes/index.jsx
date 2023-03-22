@@ -8,6 +8,17 @@ import UltimaNota from "~/components/notes/UltimasNotas";
 import CardMini from "~/components/notes/UltimasNotas/CardMini";
 import { Button } from "@mui/material";
 import Carrousel from "~/components/carrousel";
+import { fetch } from "@remix-run/node";
+
+export const loader = async ({ request, params }) => {
+  let response = await fetch(`https://mtch.vibetv.mx/wp-json/wp/v2/posts`);
+  console.log(response);
+  response = await response.json();
+  console.log(response);
+
+  console.log("data");
+  return null;
+};
 
 export const ErrorBoundary = ({ error }) => {
   console.log({ error });
