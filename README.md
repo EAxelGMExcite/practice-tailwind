@@ -1,4 +1,4 @@
-# Welcome to Remix Sadasi!
+# Welcome to Remix Sadasi.com!
 
 - [Remix Docs](https://remix.run/docs)
 
